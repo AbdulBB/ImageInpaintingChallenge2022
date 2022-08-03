@@ -1,0 +1,6 @@
+torch
+numpy
+streamlit
+pillow
+albumentations
+torchvision
