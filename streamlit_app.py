@@ -140,8 +140,9 @@ Estimated Total Size (MB): 133.05
 The model just has $4,058,755$ parameters which is not many compared to other models. 
 """
 
-"""Lets start with playing around with the model. Here one can drag and drop a image from the folder 'pics' or just 
-take a picture. With the slider you can control the size of the grid. The button 'Random offset and spacing' 
+"""Lets start with playing around with the model. Here you can drag and drop an image, 
+take a picture or press the button "Random Image 🔀📷" which will automatically upload an image for you. 
+With the slider you can control the size of the grid. The button 'Random offset and spacing' 
 will generate a random offset and spacing for the grid. Have fun! 🥳
 
 """

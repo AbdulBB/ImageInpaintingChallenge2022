@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="40aeede3-5c06-45d2-af13-7317c8289815" name="Changes" comment="">
+    <list default="true" id="56621e86-6c34-4131-a179-ee9c1a420af8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/ImageInpaintingChallenge2022.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ImageInpaintingChallenge2022.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/architectures.py" beforeDir="false" afterPath="$PROJECT_DIR$/architectures.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datasets.py" beforeDir="false" afterPath="$PROJECT_DIR$/datasets.py" afterDir="false" />
@@ -22,31 +29,27 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2CtS5Pb1tPoEYidvUxF2nvV4wcv" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="2CuSIBv9ocNiLSpFTmPylMX7USv" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/BanbhanAbdulBasit/OneDrive - Johannes Kepler Universität Linz/Studium/5SS2022/ArtificialIntelligenceinLifeSciences/UE/Challenge3&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="40aeede3-5c06-45d2-af13-7317c8289815" name="Changes" comment="" />
-      <created>1659620206381</created>
+      <changelist id="56621e86-6c34-4131-a179-ee9c1a420af8" name="Changes" comment="" />
+      <created>1659650896089</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1659620206381</updated>
-      <workItem from="1659620209251" duration="1418000" />
-      <workItem from="1659646094540" duration="36000" />
-      <workItem from="1659647302467" duration="3119000" />
+      <updated>1659650896089</updated>
+      <workItem from="1659650898253" duration="197000" />
     </task>
     <servers />
   </component>
