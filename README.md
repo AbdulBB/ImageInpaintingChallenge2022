@@ -9,6 +9,7 @@ To run this programm via command line:
 python3 main.py working_config.json
 ```
 
+## Structure
 ```
 ImageInpaintingChallenge2022
 |- architectures.py
