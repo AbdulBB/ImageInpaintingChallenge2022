@@ -196,7 +196,7 @@ if image_file is not None:
         with torch.no_grad():
             output = model(full_image.to(device))
         output = output.detach().cpu().numpy()
-    st.success('Done!')
+    st.success('Done! 🪄')
     
     with col3:
         st.subheader("Output Image🪄")
