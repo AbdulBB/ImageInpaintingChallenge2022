@@ -189,14 +189,15 @@ if image_file is not None:
         st.subheader("Target Image 🎯")
         st.image(np.transpose(target.astype('uint8'), (1, 2, 0)), width=200)
 
-
-    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-    model = torch.load(r"./results/best_model.pt", map_location=torch.device('cpu'))
-    model.to(device)
-    with torch.no_grad():
-        output = model(full_image.to(device))
-    output = output.detach().cpu().numpy()
-
+    with st.spinner('Wait for it...'):
+        device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+        model = torch.load(r"./results/best_model.pt", map_location=torch.device('cpu'))
+        model.to(device)
+        with torch.no_grad():
+            output = model(full_image.to(device))
+        output = output.detach().cpu().numpy()
+    st.success('Done!')
+    
     with col3:
         st.subheader("Output Image🪄")
         st.image(np.transpose(output.astype('uint8'), (1, 2, 0)), width=200)
