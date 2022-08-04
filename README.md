@@ -10,7 +10,7 @@ python3 main.py working_config.json
 ```
 
 ```
-example_project
+ImageInpaintingChallenge2022
 |- architectures.py
 |    Classes and functions needed for network architectures
 |- datasets.py
