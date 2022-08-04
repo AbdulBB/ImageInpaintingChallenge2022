@@ -3,6 +3,9 @@ This was a simple image inpainting project where a simple convolutional neural n
 
 To play aroud with the model which can be done here: https://abdulbb-imageinpaintingchallenge2022-streamlit-app-v8lsgu.streamlitapp.com/
 
+## Demo
+[demo](https://user-images.githubusercontent.com/27974341/182881337-87a94400-4816-4095-aed6-b006c48085e5.webm)
+
 To run this programm via command line:
 
 ```
