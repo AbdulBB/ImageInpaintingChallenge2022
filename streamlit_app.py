@@ -1,4 +1,6 @@
 import streamlit as st
+import random
+import os
 from PIL import Image
 import numpy as np
 import albumentations as A
@@ -12,13 +14,15 @@ MAX_OFFSET = 8
 MIN_SPACING = 2
 MAX_SPACING = 6
 
-#st.set_page_config(layout="wide")
+
+# st.set_page_config(layout="wide")
 
 
 def load_image(image_file):
     image = Image.open(image_file)
     image = np.asarray(image, dtype=np.float32)
     return image
+
 
 def rmsdiff(im1, im2):
     """Calculates the root mean square error (RSME) between two images"""
@@ -34,10 +38,8 @@ transforms = A.Compose(
     ]
 )
 
-
 st.title("Image Inpainting")
 st.caption("Abdul Basit Banbhan")
-
 
 st.header("Introduction")
 
@@ -69,7 +71,6 @@ output image is shown in the middle. """
 
 st.image("./recoursces/exp.png")
 
-
 st.header("The Model 🧠")
 
 """This problem can be tackled, with a simple convolutional neural network (CNN). I will not go into the details of 
@@ -80,7 +81,8 @@ feature maps can be plotted as images. More on this in a different blog post. Le
  below the CNN has $6$ hidden layers. All layer has a kernel size of $7$x$7$ and a stride of $1$ with a padding size of $3$x$3$.
  The output layer has $3$ output channels which represents the RGB channels."""
 
-st.text("""SimpleCNN(
+st.text(
+    """SimpleCNN(
   (hidden_layers): Sequential(
     (0): Conv2d(4, 128, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
     (1): ReLU()
@@ -96,13 +98,15 @@ st.text("""SimpleCNN(
     (11): ReLU()
   )
   (output_layer): Conv2d(128, 3, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
-)""")
+)"""
+)
 
 """
 To see how many parameters the model has, one can see it below:
 """
 
-st.text("""----------------------------------------------------------------
+st.text(
+    """----------------------------------------------------------------
         Layer (type)               Output Shape         Param #
 ================================================================
             Conv2d-1        [-1, 128, 100, 100]          25,216
@@ -129,7 +133,8 @@ Params size (MB): 15.48
 Estimated Total Size (MB): 133.05
 ----------------------------------------------------------------
 
-""")
+"""
+)
 
 """
 The model just has $4,058,755$ parameters which is not many compared to other models. 
@@ -143,25 +148,39 @@ will generate a random offset and spacing for the grid. Have fun! 🥳
 
 st.header("Playground 🎢")
 
-OFFSET = st.slider("↕️ Offset ↔️", MIN_OFFSET, MAX_OFFSET, (0, 1))
-SPACING = st.slider("↕️ Spacing ️↔️", MIN_SPACING, MAX_SPACING, (2, 3))
-clicked = st.button("Random Offset and Spacing 🔀")
+OFFSET = st.slider(
+    "↕️ Offset ↔️", MIN_OFFSET, MAX_OFFSET, (0, 1)
+)  # offset in the N-direction
+SPACING = st.slider(
+    "↕️ Spacing ️↔️", MIN_SPACING, MAX_SPACING, (2, 3)
+)  # spacing in the M-direction
 
-image_file = st.file_uploader("Upload Images 📸", type=["png", "jpg", "jpeg"])
+clicked_random_OS = st.button(
+    "Random Offset and Spacing 🔀"
+)  # random offset and spacing
+
+image_file = st.file_uploader(
+    "Upload Images 📸", type=["png", "jpg", "jpeg"]
+)  # upload image
+
+clicked_random_image = st.button("Random Image 🔀📷")
+
+if clicked_random_image:
+    image_file = Image.open(
+        random.choice(
+            [os.path.abspath(os.path.join("./pics", p)) for p in os.listdir("./pics")]
+        )
+    )
+    image_array = np.asarray(image_file, dtype=np.float32)
 
 
 if image_file is not None:
-    file_details = {
-        "filename": image_file.name,
-        "filetype": image_file.type,
-        "filesize": image_file.size,
-    }
-    #st.write(file_details)
-    image_array = load_image(image_file)
+    if not clicked_random_image:
+        image_array = load_image(image_file)  # load image
 
     image_file = transforms(image=image_array)["image"]  # apply the transform
 
-    if clicked:
+    if clicked_random_OS:
         offset = np.random.randint(MIN_OFFSET, MAX_OFFSET, size=2)  # random offset
         spacing = np.random.randint(MIN_SPACING, MAX_SPACING, size=2)  # random spacing
     else:
@@ -179,32 +198,36 @@ if image_file is not None:
         (torch.from_numpy(image_array), torch.from_numpy(known_array)), 0
     )  # concatenate the image and the known array
 
-    col1, col2, col3 = st.columns(3, gap="small")
+    col1, col2, col3 = st.columns(3, gap="small")  # split the screen into 3 columns
 
     with col1:
         st.subheader("Input Image 📷")
-        st.image(np.transpose(image_array.astype('uint8'), (1, 2, 0)), width=200)
+        st.image(
+            np.transpose(image_array.astype("uint8"), (1, 2, 0)), width=200
+        )  # show the image
 
     with col2:
         st.subheader("Target Image 🎯")
-        st.image(np.transpose(target.astype('uint8'), (1, 2, 0)), width=200)
+        st.image(
+            np.transpose(target.astype("uint8"), (1, 2, 0)), width=200
+        )  # show the target image
 
-    with st.spinner('Wait for it...'):
-        device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-        model = torch.load(r"./results/best_model.pt", map_location=torch.device('cpu'))
-        model.to(device)
-        with torch.no_grad():
-            output = model(full_image.to(device))
-        output = output.detach().cpu().numpy()
-    st.success('Done! 🪄')
-    
+    with st.spinner("Wait for it..."):
+        device = torch.device(
+            "cuda:0" if torch.cuda.is_available() else "cpu"
+        )  # use GPU if available
+        model = torch.load(
+            r"./results/best_model.pt", map_location=torch.device("cpu")
+        )  # load the model
+        model.to(device)  # move the model to the GPU
+        with torch.no_grad():  # do not compute gradients
+            output = model(full_image.to(device))  # predict the image
+        output = output.detach().cpu().numpy()  # move the output to the CPU
+    st.success("Done! 🪄")  # show the success message
+
     with col3:
         st.subheader("Output Image🪄")
-        st.image(np.transpose(output.astype('uint8'), (1, 2, 0)), width=200)
-    st.write("Root Mean Square Error ",rmsdiff(target, output))
-
-
-
-
-
-
+        st.image(
+            np.transpose(output.astype("uint8"), (1, 2, 0)), width=200
+        )  # show the output image
+    st.write("Root Mean Square Error ", rmsdiff(target, output))  # show the error
